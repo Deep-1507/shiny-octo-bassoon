@@ -1,1 +1,13 @@
 @import "tailwindcss";
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 18s linear infinite;
+}
+
+.group:hover .animate-scroll {
+  animation-play-state: paused;
+}
