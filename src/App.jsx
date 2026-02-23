@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import coreTeam from "../src/data/coreTeam";
-import { Users, Award, GraduationCap, Building2 } from "lucide-react";
+import { Menu, X, Users, Award, GraduationCap, Building2 } from "lucide-react";
 
 const Section = ({ id, title, children }) => (
   <section id={id} className="py-20 px-6 md:px-16 bg-white scroll-mt-24">
@@ -29,6 +29,7 @@ const logos = Object.values(
 
 export default function TPCWebsite() {
   const [openModal, setOpenModal] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -46,18 +47,22 @@ export default function TPCWebsite() {
   return (
     <div className="font-sans text-gray-800 bg-gray-50">
       {/* NAVBAR */}
+
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-md">
         <div className="max-w-7xl mx-auto px-6 md:px-16 py-4 flex justify-between items-center">
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <img
               src="/images/bietlogo.png"
               alt="BIET Logo"
-              className="w-10 h-10 md:w-10 md:h-10 object-contain"
+              className="w-10 h-10 object-contain"
             />
-            <h1 className="text-xl md:text-2xl font-bold text-red-700">
+            <h1 className="text-lg md:text-2xl font-bold text-red-700">
               TPC | BIET Jhansi
             </h1>
           </div>
+
+          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 font-medium">
             <button
               onClick={() => scrollToSection("about")}
@@ -90,6 +95,8 @@ export default function TPCWebsite() {
               Our Team
             </button>
           </div>
+
+          {/* Desktop Buttons */}
           <div className="hidden md:flex gap-4">
             <button className="px-4 py-2 border border-red-700 text-red-700 rounded-xl hover:bg-red-700 hover:text-white transition">
               Student Login
@@ -98,7 +105,59 @@ export default function TPCWebsite() {
               Recruiter Login
             </button>
           </div>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div className="md:hidden bg-white shadow-lg px-6 pb-6 space-y-4 font-medium">
+            <button
+              onClick={() => scrollToSection("about")}
+              className="block w-full text-left hover:text-red-600"
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollToSection("tpo")}
+              className="block w-full text-left hover:text-red-600"
+            >
+              Director's Message
+            </button>
+            <button
+              onClick={() => scrollToSection("records")}
+              className="block w-full text-left hover:text-red-600"
+            >
+              Records
+            </button>
+            <button
+              onClick={() => scrollToSection("partners")}
+              className="block w-full text-left hover:text-red-600"
+            >
+              Partners
+            </button>
+            <button
+              onClick={() => scrollToSection("team")}
+              className="block w-full text-left hover:text-red-600"
+            >
+              Our Team
+            </button>
+
+            <div className="pt-4 flex flex-col gap-3">
+              <button className="w-full px-4 py-2 border border-red-700 text-red-700 rounded-xl hover:bg-red-700 hover:text-white transition">
+                Student Login
+              </button>
+              <button className="w-full px-4 py-2 bg-red-700 text-white rounded-xl hover:bg-red-800 transition">
+                Recruiter Login
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* HERO WITH BACKGROUND IMAGE */}
@@ -335,73 +394,71 @@ export default function TPCWebsite() {
         </motion.div>
       </Section>
 
+      <section className="relative bg-gradient-to-br from-red-800 to-red-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-red-600 opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-red-500 opacity-20 rounded-full blur-3xl"></div>
 
-       <section className="relative bg-gradient-to-br from-red-800 to-red-900 text-white py-20 px-6 md:px-16 overflow-hidden">
-      
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-red-600 opacity-20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-red-500 opacity-20 rounded-full blur-3xl"></div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
+            Why BIET Jhansi
+          </motion.h2>
 
-      <div className="max-w-7xl mx-auto text-center relative z-10">
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-lg text-red-100 leading-relaxed mb-16"
+          >
+            Established as a premier government engineering institute,
+            Bundelkhand Institute of Engineering and Technology, Jhansi has
+            consistently delivered excellence in technical education. With
+            strong academic foundations, industry collaborations, and a vibrant
+            campus culture, BIET nurtures competent professionals ready to excel
+            in dynamic global environments.
+          </motion.p>
 
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-6"
-        >
-          Why BIET Jhansi
-        </motion.h2>
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Alumni */}
+            <FeatureCard
+              icon={<Users size={36} />}
+              title="Strong Alumni Network"
+              description="Our alumni serve in top MNCs, government sectors, and research institutions worldwide, strengthening BIET's legacy."
+            />
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-lg text-red-100 leading-relaxed mb-16"
-        >
-          Established as a premier government engineering institute, Bundelkhand Institute of Engineering and Technology, Jhansi 
-          has consistently delivered excellence in technical education. With strong academic foundations, industry collaborations, 
-          and a vibrant campus culture, BIET nurtures competent professionals ready to excel in dynamic global environments.
-        </motion.p>
+            {/* Rankings */}
+            <FeatureCard
+              icon={<Award size={36} />}
+              title="Academic Excellence"
+              description="Recognized for strong academic performance, experienced faculty, and consistent university results."
+            />
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Admission */}
+            <FeatureCard
+              icon={<GraduationCap size={36} />}
+              title="Merit-Based Admission"
+              description="Students are admitted through competitive entrance examinations ensuring quality and academic rigor."
+            />
 
-          {/* Alumni */}
-          <FeatureCard
-            icon={<Users size={36} />}
-            title="Strong Alumni Network"
-            description="Our alumni serve in top MNCs, government sectors, and research institutions worldwide, strengthening BIET's legacy."
-          />
-
-          {/* Rankings */}
-          <FeatureCard
-            icon={<Award size={36} />}
-            title="Academic Excellence"
-            description="Recognized for strong academic performance, experienced faculty, and consistent university results."
-          />
-
-          {/* Admission */}
-          <FeatureCard
-            icon={<GraduationCap size={36} />}
-            title="Merit-Based Admission"
-            description="Students are admitted through competitive entrance examinations ensuring quality and academic rigor."
-          />
-
-          {/* Development */}
-          <FeatureCard
-            icon={<Building2 size={36} />}
-            title="Holistic Development"
-            description="From technical fests to innovation labs and sports facilities, BIET promotes all-round student growth."
-          />
-
+            {/* Development */}
+            <FeatureCard
+              icon={<Building2 size={36} />}
+              title="Holistic Development"
+              description="From technical fests to innovation labs and sports facilities, BIET promotes all-round student growth."
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* PLACEMENT RECORD */}
       <Section id="records" title="Placement Records">
@@ -468,137 +525,129 @@ export default function TPCWebsite() {
       </Section>
 
       {/* OUR TEAM */}
-     <Section id="team" title="Our Team">
-  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10">
-    {coreTeam.map((member, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: index * 0.05 }}
-        viewport={{ once: true }}
-        onClick={() => window.open(member.linkedinurl,"_blank")}
-        className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-2xl transition duration-300"
-      >
-        <div className="relative w-28 h-28 mx-auto">
-          <div className="absolute inset-0 rounded-full bg-red-500 blur-lg opacity-20"></div>
-          <img
-            src={member.img}
-            alt={member.name}
-            className="relative w-28 h-28 rounded-full object-cover border-4 border-red-700"
-          />
+      <Section id="team" title="Our Team">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10">
+          {coreTeam.map((member, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              onClick={() => window.open(member.linkedinurl, "_blank")}
+              className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-2xl transition duration-300"
+            >
+              <div className="relative w-28 h-28 mx-auto">
+                <div className="absolute inset-0 rounded-full bg-red-500 blur-lg opacity-20"></div>
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="relative w-28 h-28 rounded-full object-cover border-4 border-red-700"
+                />
+              </div>
+
+              <h4 className="mt-4 font-bold text-red-700 text-lg">
+                {member.name}
+              </h4>
+
+              <p className="text-gray-600 text-sm font-medium">{member.post}</p>
+
+              <p className="text-gray-500 text-sm mt-1">📞 {member.phone}</p>
+            </motion.div>
+          ))}
         </div>
+      </Section>
 
-        <h4 className="mt-4 font-bold text-red-700 text-lg">
-          {member.name}
-        </h4>
-
-        <p className="text-gray-600 text-sm font-medium">
-          {member.post}
-        </p>
-
-        <p className="text-gray-500 text-sm mt-1">
-          📞 {member.phone}
-        </p>
-      </motion.div>
-    ))}
-  </div>
-</Section>
-
-     {/* FOOTER */}
-<footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-16">
-  <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-
-    {/* LEFT SECTION */}
-    <div>
-      <h3 className="text-xl font-bold text-white">TPC - BIET Jhansi</h3>
-      <p className="mt-4 text-sm">
-        Empowering careers through industry collaboration and academic
-        excellence.
-      </p>
-    </div>
-
-    {/* QUICK LINKS */}
-    <div>
-      <h4 className="font-semibold text-white">Quick Links</h4>
-      <ul className="mt-4 space-y-2 text-sm">
-        <li>
-          <button
-            onClick={() => scrollToSection("about")}
-            className="hover:text-red-500"
-          >
-            About
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => scrollToSection("records")}
-            className="hover:text-red-500"
-          >
-            Placement Records
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => scrollToSection("partners")}
-            className="hover:text-red-500"
-          >
-            Partners
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    {/* CONTACT + MAP */}
-    <div>
-      <h4 className="font-semibold text-white">Contact</h4>
-
-      <div className="mt-4 grid md:grid-cols-2 gap-4 items-start">
-
-        {/* CONTACT DETAILS */}
-        <div className="text-sm space-y-2">
-          <p>
-            Training & Placement Cell, <br />
-            1st Floor, Central Library, <br />
-            Bundelkhand Institute of Engineering and Technology <br />
-            Jhansi, Uttar Pradesh – 284128
-          </p>
-
-          <div className="mt-4">
-            <p className="font-semibold text-white">Contact Numbers:</p>
-            <p>📞 +91-7985600151</p>
-            <p>📞 +91-7380650624</p>
+      {/* FOOTER */}
+      <footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-16">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+          {/* LEFT SECTION */}
+          <div>
+            <h3 className="text-xl font-bold text-white">TPC - BIET Jhansi</h3>
+            <p className="mt-4 text-sm">
+              Empowering careers through industry collaboration and academic
+              excellence.
+            </p>
           </div>
 
-          <div className="mt-3">
-            <p className="font-semibold text-white">Email:</p>
-            <p>tnp@bietjhs.ac.in</p>
+          {/* QUICK LINKS */}
+          <div>
+            <h4 className="font-semibold text-white">Quick Links</h4>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="hover:text-red-500"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("records")}
+                  className="hover:text-red-500"
+                >
+                  Placement Records
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("partners")}
+                  className="hover:text-red-500"
+                >
+                  Partners
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* CONTACT + MAP */}
+          <div>
+            <h4 className="font-semibold text-white">Contact</h4>
+
+            <div className="mt-4 grid md:grid-cols-2 gap-4 items-start">
+              {/* CONTACT DETAILS */}
+              <div className="text-sm space-y-2">
+                <p>
+                  Training & Placement Cell, <br />
+                  1st Floor, Central Library, <br />
+                  Bundelkhand Institute of Engineering and Technology <br />
+                  Jhansi, Uttar Pradesh – 284128
+                </p>
+
+                <div className="mt-4">
+                  <p className="font-semibold text-white">Contact Numbers:</p>
+                  <p>📞 +91-7985600151</p>
+                  <p>📞 +91-7380650624</p>
+                </div>
+
+                <div className="mt-3">
+                  <p className="font-semibold text-white">Email:</p>
+                  <p>tnp@bietjhs.ac.in</p>
+                </div>
+              </div>
+
+              {/* GOOGLE MAP */}
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2281.4130306772777!2d78.63688669690328!3d25.458575734940904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3977772eacf0faff%3A0x6624d2b80ce16028!2sBundelkhand%20Institute%20Of%20Engineering%20%26%20Technology%20chemical%20engineering%20department!5e0!3m2!1sen!2sin!4v1771828173653!5m2!1sen!2sin"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="BIET Location"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* GOOGLE MAP */}
-        <div className="rounded-lg overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2281.4130306772777!2d78.63688669690328!3d25.458575734940904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3977772eacf0faff%3A0x6624d2b80ce16028!2sBundelkhand%20Institute%20Of%20Engineering%20%26%20Technology%20chemical%20engineering%20department!5e0!3m2!1sen!2sin!4v1771828173653!5m2!1sen!2sin"
-            width="100%"
-            height="200"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="BIET Location"
-          ></iframe>
+        <div className="text-center mt-10 text-sm text-gray-500">
+          © {new Date().getFullYear()} TPC BIET Jhansi. All rights reserved.
         </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <div className="text-center mt-10 text-sm text-gray-500">
-    © {new Date().getFullYear()} TPC BIET Jhansi. All rights reserved.
-  </div>
-</footer>
+      </footer>
 
       {/* MODAL */}
       {openModal && (
@@ -756,17 +805,11 @@ function FeatureCard({ icon, title, description }) {
       viewport={{ once: true }}
       className="text-center"
     >
-      <div className="flex justify-center mb-4 text-red-200">
-        {icon}
-      </div>
+      <div className="flex justify-center mb-4 text-red-200">{icon}</div>
 
-      <h3 className="text-xl font-semibold mb-4">
-        {title}
-      </h3>
+      <h3 className="text-xl font-semibold mb-4">{title}</h3>
 
-      <p className="text-red-100 text-sm leading-relaxed mb-6">
-        {description}
-      </p>
+      <p className="text-red-100 text-sm leading-relaxed mb-6">{description}</p>
 
       <button className="bg-white text-red-800 px-5 py-2 rounded-lg font-medium hover:bg-red-100 transition">
         Know More
