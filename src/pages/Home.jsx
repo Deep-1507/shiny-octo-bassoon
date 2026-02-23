@@ -190,10 +190,16 @@ export default function Home() {
             </button>
 
             <div className="pt-4 flex flex-col gap-3">
-              <button className="w-full px-4 py-2 border border-red-700 text-red-700 rounded-xl hover:bg-red-700 hover:text-white transition cursor-pointer">
+              <button 
+              className="w-full px-4 py-2 border border-red-700 text-red-700 rounded-xl hover:bg-red-700 hover:text-white transition cursor-pointer"
+              onClick={() => navigate("/student-login")}
+              >
                 Student Login
               </button>
-              <button className="w-full px-4 py-2 bg-red-700 text-white rounded-xl hover:bg-red-800 transition cursor-pointer">
+              <button 
+              className="w-full px-4 py-2 bg-red-700 text-white rounded-xl hover:bg-red-800 transition cursor-pointer"
+              onClick={() => navigate("/faculty-login")}
+              >
                 Recruiter Login
               </button>
             </div>
