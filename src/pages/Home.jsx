@@ -719,7 +719,7 @@ export default function Home() {
       </Section>
 
       {/* OUR TEAM */}
-      <Section id="team" title="Our Team">
+      {/* <Section id="team" title="Our Team">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10">
           {coreTeam.map((member, index) => (
             <motion.div
@@ -750,7 +750,7 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </Section>
+      </Section> */}
 
       {/* FOOTER */}
       <footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-16">
